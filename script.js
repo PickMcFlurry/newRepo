@@ -37,36 +37,36 @@ function createWeatherCard(data) {
   img.height = 64;
 
   const infoBox = document.createElement("div");
-  const nameEl = document.createElement("div");
-  nameEl.textContent = `${data.name}, ${data.sys.country}`;
-  nameEl.style.fontWeight = "700";
-  nameEl.style.fontSize = "18px";
+  const name = document.createElement("div");
+  name.textContent = `${data.name}, ${data.sys.country}`;
+  name.style.fontWeight = "700";
+  name.style.fontSize = "18px";
 
-  const descEl = document.createElement("div");
-  descEl.textContent = data.weather[0].description;
-  descEl.style.color = "#6b7280";
-  descEl.style.textTransform = "capitalize";
+  const weatherType = document.createElement("div");
+  weatherType.textContent = data.weather[0].description;
+  weatherType.style.color = "#6b7280";
+  weatherType.style.textTransform = "capitalize";
 
-  infoBox.appendChild(nameEl);
-  infoBox.appendChild(descEl);
+  infoBox.appendChild(name);
+  infoBox.appendChild(weatherType);
 
   header.appendChild(img);
   header.appendChild(infoBox);
   container.appendChild(header);
 
-  const tempEl = document.createElement("div");
-  tempEl.textContent = `${Math.round(data.main.temp)}°C`;
-  tempEl.style.fontSize = "36px";
-  tempEl.style.fontWeight = "800";
-  tempEl.style.margin = "8px 0";
+  const temperature = document.createElement("div");
+  temperature.textContent = `${Math.round(data.main.temp)}°C`;
+  temperature.style.fontSize = "36px";
+  temperature.style.fontWeight = "800";
+  temperature.style.margin = "8px 0";
 
-  const feelsEl = document.createElement("div");
-  feelsEl.textContent = `Feels like ${Math.round(data.main.feels_like)}°C`;
-  feelsEl.style.color = "#6b7280";
-  feelsEl.style.marginBottom = "8px";
+  const Temp_msg = document.createElement("div");
+  Temp_msg.textContent = `Feels like ${Math.round(data.main.feels_like)}°C`;
+  Temp_msg.style.color = "#6b7280";
+  Temp_msg.style.marginBottom = "8px";
 
-  container.appendChild(tempEl);
-  container.appendChild(feelsEl);
+  container.appendChild(temperature);
+  container.appendChild(Temp_msg);
 
   const extras = document.createElement("div");
   extras.style.display = "grid";
@@ -114,12 +114,12 @@ async function getWeather(city) {
 
     if (res.ok || data.cod === "200") {
       createWeatherCard(data);
-      console.log("200");
+      console.log("Your weather is display sucessfuly");
       return;
     }
     showMessage("City not found. Try another name.", "#b00020");
   } catch (err) {
-    showMessage("Network error. Please try again.", "#b00020");
+    showMessage(" Please try again.", "#b00020");
   }
 }
 
